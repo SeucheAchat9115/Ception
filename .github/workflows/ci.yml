@@ -20,6 +20,7 @@ jobs:
     - name: Create venv
       run: |
         python -m venv ./venv/
+        source ./venv/bin/activate
     - name: Install Poetry
       uses: snok/install-poetry@v1
     - name: Poetry install
