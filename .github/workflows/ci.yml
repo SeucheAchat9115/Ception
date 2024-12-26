@@ -29,3 +29,8 @@ jobs:
     - name: Pylint
       run: |
         pylint $(git ls-files '*.py')
+    - name: ruff check
+      uses: astral-sh/ruff-action@v2
+      with: 
+        args: "format --check"
+        version: "0.8.4"
