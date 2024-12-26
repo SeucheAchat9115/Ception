@@ -34,15 +34,11 @@ cd ception
 2. Install dependencies using Poetry:
 ```bash
 python -m venv "./cp-venv"
+source cp-venv/bin/activate
 poetry install
 ```
 
-3. Activate the virtual environment:
-```bash
-source cp-venv/bin/activate
-```
-
-4. Set up pre-commit hooks:
+3. Set up pre-commit hooks:
 ```bash
 pre-commit install
 ```
