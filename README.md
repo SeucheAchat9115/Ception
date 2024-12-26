@@ -82,10 +82,10 @@ Ception uses GitHub Actions for automated testing, linting, and deployment. Work
 
 The Ception framework is divided into the following modules:
 
-1. Core: Base utilities for loading data, configuring models, and training pipelines.
-2. 2D Detection: Algorithms and pretrained models for 2D object detection.
-3. 3D Detection: Tools and architectures for processing 3D data, including point clouds.
-4. Visualization: Functions for visualizing detection results in 2D and 3D formats.
+1. **Core**: Base utilities for loading data, configuring models, and training pipelines.
+2. **2D Detection**: Algorithms and pretrained models for 2D object detection.
+3. **3D Detection**: Tools and architectures for processing 3D data, including point clouds.
+4. **Visualization**: Functions for visualizing detection results in 2D and 3D formats.
 
 ## Supported Models
 
