@@ -37,4 +37,4 @@ jobs:
         version: "0.8.4"
     - name: Run mypy
       run: |
-        python mypy .
+        mypy .
