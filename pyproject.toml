@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "deepframe"
+name = "ception"
 version = "0.1.0"
 description = "A deep learning framework to support computer vision tasks"
 authors = ["Maximilian Menke <maximilianmenke@web.de>"]
