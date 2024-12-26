@@ -27,7 +27,7 @@ Ception is a state-of-the-art deep learning and computer vision framework built 
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your_username/ception.git  
+git clone https://github.com/SeucheAchat9115/ception.git  
 cd ception
 ```
 
