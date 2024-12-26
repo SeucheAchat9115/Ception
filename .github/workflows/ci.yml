@@ -22,8 +22,8 @@ jobs:
         python -m venv ./venv/
         source ./venv/bin/activate
     - name: Install Poetry
-      uses: snok/install-poetry@v1
-    - name: Poetry install
+      uses: abatilo/actions-poetry@v2
+    - name: Install project dependencies
       run: |
         poetry install    
     - name: Pylint
