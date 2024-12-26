@@ -33,7 +33,7 @@ cd ception
 
 2. Install dependencies using Poetry:
 ```bash
-python -m cp-venv "./cp-venv"
+python -m venv "./cp-venv"
 poetry install
 ```
 
