@@ -27,6 +27,8 @@ jobs:
     - name: Install project dependencies
       run: |
         poetry install    
+    - name: Isort
+      uses: isort/isort-action@v1
     - name: Pylint
       run: |
         pylint $(git ls-files '*.py')
