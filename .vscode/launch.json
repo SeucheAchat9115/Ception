@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "DF: Run main.py",
+            "name": "CP: Run train.py",
             "type": "debugpy",
             "request": "launch",
-            "program": "main.py",
+            "program": "tools/train.py",
             "console": "integratedTerminal"
         }
     ]

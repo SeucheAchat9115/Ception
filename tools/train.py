@@ -12,6 +12,7 @@ def main(args: argparse.Namespace) -> None:
         args (argparse.Namespace): Arguments collected by argparser
     """
     cfg = load_default_config()
+    print(cfg)
 
 
 def parse_args() -> argparse.Namespace:
