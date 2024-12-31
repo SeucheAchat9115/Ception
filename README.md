@@ -4,7 +4,7 @@ Warning: This readme is currently AI generated and not manually checked!
 
 # Ception: A Deep Learning Framework for 2D and 3D Object Detection in Autonomous Driving
 
-Ception is a state-of-the-art deep learning and computer vision framework built on PyTorch, designed specifically for autonomous driving applications. It provides robust tools for 2D and 3D object detection, leveraging advanced perception techniques to ensure accurate and efficient scene understanding.
+Ception is a state-of-the-art deep learning and computer vision framework built on PyTorch, designed specifically for autonomous driving applications. It provides robust tools for 2D and 3D object detection, leveraging advanced perception techniques to ensure accurate and efficient scene understanding. This framework aims in replacing detectron2 or/and mmcv at some point.
 
 ## Features
 
