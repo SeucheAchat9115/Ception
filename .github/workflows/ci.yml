@@ -12,7 +12,7 @@ jobs:
     - name: Python setup
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: '3.12'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -27,16 +27,6 @@ jobs:
     - name: Install project dependencies
       run: |
         poetry install
-    - name: Isort
-      uses: isort/isort-action@v1
-    - name: Pylint
+    - name: Run pre-commit
       run: |
-        pylint $(git ls-files '*.py')
-    - name: ruff check
-      uses: astral-sh/ruff-action@v2
-      with:
-        args: "format --check"
-        version: "0.8.4"
-    - name: Run mypy
-      run: |
-        mypy .
+        poetry run pre-commit run --all-files --show-diff-on-failure
