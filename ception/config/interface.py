@@ -1,7 +1,7 @@
 """This module provides an interface for loading configuration settings."""
 
-from ception.config.checking import is_yaml_config
-from ception.config.utils import Config
+from ception.config.base import Config
+from ception.config.check import is_yaml_config
 
 
 def load_config(source: str | dict[str, str] | None = None) -> Config:

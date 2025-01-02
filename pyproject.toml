@@ -12,6 +12,8 @@ matplotlib = "^3.10.0"
 pre-commit = "^4.0.1"
 types-pyyaml = "^6.0.12.20241230"
 pylint = "^3.3.3"
+torch = "^2.5.1"
+torchvision = "^0.20.1"
 
 [build-system]
 requires = ["poetry-core"]
