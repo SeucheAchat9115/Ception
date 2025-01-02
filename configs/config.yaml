@@ -1,0 +1,22 @@
+experiment:
+  name: faster_rcnn_bdd100k
+model:
+  name: faster_rcnn
+  backbone: resnet50
+  num_classes: 10
+  pretrained: True
+data:
+  train_dataset: bdd100k
+  train_batch_size: 2
+  val_dataset: bdd100k
+  val_batch_size: 2
+training:
+  epochs: 10
+  lr: 0.001
+  lr_scheduler: step
+  optimizer: adam
+evaluation:
+  metric_name: mAP
+utils:
+  seed: 42
+  device: cuda

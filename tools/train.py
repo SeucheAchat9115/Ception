@@ -1,7 +1,8 @@
 """Main Function of the framework"""
 
 import argparse
-from ception.utils.config import load_default_config
+
+from ception.config.interface import load_config
 
 
 def main(args: argparse.Namespace) -> None:
@@ -11,7 +12,7 @@ def main(args: argparse.Namespace) -> None:
     Args:
         args (argparse.Namespace): Arguments collected by argparser
     """
-    cfg = load_default_config()
+    cfg = load_config(args.config)
     print(cfg)
 
 
@@ -23,13 +24,11 @@ def parse_args() -> argparse.Namespace:
         argparse.Namespace: Arguments passed on the cli interface
     """
 
-    parser = argparse.ArgumentParser(
-        description="Ception is a deep learning framework"
-    )
+    parser = argparse.ArgumentParser(description="Ception is a deep learning framework")
     parser.add_argument(
         "--config",
         type=str,
-        default="ception/configs/config.yaml",
+        default="configs/config.yaml",
         help="Config to overwrite default hyperparameters",
     )
     return parser.parse_args()
