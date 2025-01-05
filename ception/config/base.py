@@ -82,6 +82,7 @@ class ModelConfig(BaseConfig):
 class DataConfig(BaseConfig):
     """Configuration class for the data settings"""
 
+    dataset_type: str | None
     train_dataset: str | None
     train_batch_size: int | None
     val_dataset: str | None
@@ -89,6 +90,7 @@ class DataConfig(BaseConfig):
 
     def __init__(
         self,
+        dataset_type=None,
         train_dataset=None,
         train_batch_size=2,
         val_dataset=None,
@@ -98,12 +100,14 @@ class DataConfig(BaseConfig):
         Initialize the configuration for the data settings
 
         Args:
+            dataset_type (str): Type of the dataset
             train_dataset (str): Name of the training dataset
             train_batch_size (int): Batch size for training
             val_dataset (str): Name of the validation dataset
             val_batch_size (int): Batch size for validation
         """
         super().__init__(
+            dataset_type=dataset_type,
             train_dataset=train_dataset,
             train_batch_size=train_batch_size,
             val_dataset=val_dataset,
