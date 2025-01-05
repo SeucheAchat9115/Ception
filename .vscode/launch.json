@@ -10,6 +10,13 @@
             "request": "launch",
             "program": "tools/train.py",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "CP: Run iterate.py",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "tools/iterate.py",
+            "console": "integratedTerminal"
         }
     ]
 }

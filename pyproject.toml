@@ -14,6 +14,7 @@ types-pyyaml = "^6.0.12.20241230"
 pylint = "^3.3.3"
 torch = "^2.5.1"
 torchvision = "^0.20.1"
+mypy = "^1.14.1"
 
 [build-system]
 requires = ["poetry-core"]

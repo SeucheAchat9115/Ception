@@ -18,11 +18,14 @@ def load_config(source: str | dict[str, str] | None = None) -> Config:
         Config: Configuration settings
     """
     if source is None:
+        print("CEPTION: Loading default configuration.")
         return Config.from_default()
     if isinstance(source, str):
+        print(f"CEPTION: Loading configuration from '{source}'.")
         if is_yaml_config(source):
             return Config.from_yaml(source)
         raise ValueError("Unsupported file format. Must be a YAML file.")
     if isinstance(source, dict):
+        print("CEPTION: Loading configuration from dictionary.")
         return Config.from_dict(source)
     raise ValueError("Unsupported source type. Must be None, str, or dict.")

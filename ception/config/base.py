@@ -8,10 +8,7 @@ from ception.io.reading.yaml import read_yaml_file
 class BaseConfig:
     """Base class for the configuration settings"""
 
-    def __init__(
-        self,
-        **kwargs: Any,
-    ) -> None:
+    def __init__(self, **kwargs: Any) -> None:
         """
         Initialize the base class for the configuration settings
 
@@ -30,21 +27,20 @@ class BaseConfig:
         """
         pretty_string = "\n"
         for key, value in self.__dict__.items():
-            pretty_string += f"{key}:\n"
-            for k, v in value.__dict__.items():
-                if k != "self":
-                    pretty_string += f"  {k}: {v}\n"
-        pretty_string += "\n"
+            pretty_string += f"{key}: {value}\n"
         return pretty_string
 
 
 class ExperimentConfig(BaseConfig):
     """Configuration class for the experiment settings"""
 
+    name: str | None
+    save_dir: str | None
+
     def __init__(
         self,
-        name: str | None = None,
-        save_dir: str | None = "./experiments/",
+        name=None,
+        save_dir="./output/",
     ) -> None:
         """
         Initialize the configuration for the experiment settings
@@ -59,12 +55,17 @@ class ExperimentConfig(BaseConfig):
 class ModelConfig(BaseConfig):
     """Configuration class for the model settings"""
 
+    name: str | None
+    backbone: str | None
+    num_classes: int | None
+    pretrained: bool | None
+
     def __init__(
         self,
-        name: str | None = None,
-        backbone: str | None = None,
-        num_classes: int | None = None,
-        pretrained: bool | None = False,
+        name=None,
+        backbone=None,
+        num_classes=None,
+        pretrained=None,
     ) -> None:
         """
         Initialize the configuration for the model settings
@@ -81,12 +82,17 @@ class ModelConfig(BaseConfig):
 class DataConfig(BaseConfig):
     """Configuration class for the data settings"""
 
+    train_dataset: str | None
+    train_batch_size: int | None
+    val_dataset: str | None
+    val_batch_size: int | None
+
     def __init__(
         self,
-        train_dataset: str | None = None,
-        train_batch_size: int | None = 2,
-        val_dataset: str | None = None,
-        val_batch_size: int | None = 2,
+        train_dataset=None,
+        train_batch_size=2,
+        val_dataset=None,
+        val_batch_size=2,
     ) -> None:
         """
         Initialize the configuration for the data settings
@@ -108,12 +114,17 @@ class DataConfig(BaseConfig):
 class TrainingConfig(BaseConfig):
     """Configuration class for the training settings"""
 
+    epochs: int | None
+    optimizer: str | None
+    lr: float | None
+    lr_scheduler: str | None
+
     def __init__(
         self,
-        epochs: int | None = 10,
-        optimizer: str | None = "adam",
-        lr: float | None = 0.001,
-        lr_scheduler: str | None = "step",
+        epochs=10,
+        optimizer="adam",
+        lr=0.001,
+        lr_scheduler="step",
     ) -> None:
         """
         Initialize the configuration for the training settings
@@ -130,9 +141,11 @@ class TrainingConfig(BaseConfig):
 class EvaluationConfig(BaseConfig):
     """Configuration class for the evaluation settings"""
 
+    metric_name: str | None
+
     def __init__(
         self,
-        metric_name: str | None = None,
+        metric_name=None,
     ) -> None:
         """
         Initialize the configuration for the evaluation settings
@@ -146,10 +159,13 @@ class EvaluationConfig(BaseConfig):
 class UtilsConfig(BaseConfig):
     """Configuration class for the utility settings"""
 
+    seed: int | None
+    device: str | None
+
     def __init__(
         self,
-        seed: int | None = 42,
-        device: str | None = "cuda",
+        seed=42,
+        device="cuda",
     ) -> None:
         """
         Initialize the configuration for the utility settings
@@ -163,6 +179,13 @@ class UtilsConfig(BaseConfig):
 
 class Config(BaseConfig):
     """Configuration class for all the settings"""
+
+    data: DataConfig
+    model: ModelConfig
+    experiment: ExperimentConfig
+    training: TrainingConfig
+    evaluation: EvaluationConfig
+    utils: UtilsConfig
 
     def __init__(
         self,

@@ -20,7 +20,7 @@ def main(args: argparse.Namespace) -> None:
     # 2. Initialize components that are required for training
 
     # 3. Setup the data pipeline
-    create_dummy_classification_dataset("data/ception_dummy_classification_dataset")
+    create_dummy_classification_dataset(data_dir="data/ception_dummy_classification_dataset", exist_ok=True)
 
     # 4. Setup the model
 

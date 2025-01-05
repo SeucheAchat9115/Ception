@@ -3,6 +3,9 @@
 import argparse
 
 from ception.config.interface import load_config
+from ception.data.generation.dummy_classification import create_dummy_classification_dataset
+from ception.utils.experiment import setup_experiment
+
 
 def main(args: argparse.Namespace) -> None:
     """
@@ -11,9 +14,12 @@ def main(args: argparse.Namespace) -> None:
     Args:
         args (argparse.Namespace): Arguments collected by argparser
     """
-    # 1. Load yaml config and create a config object
+
     cfg = load_config(args.config)
-    print(cfg)
+    setup_experiment(cfg)
+
+    create_dummy_classification_dataset(data_dir="dataset/ception_dummy_classification_dataset", exist_ok=True)
+
 
 def parse_args() -> argparse.Namespace:
     """
