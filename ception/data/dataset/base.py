@@ -2,10 +2,11 @@ from torch.utils.data import Dataset
 
 class BaseDataset(Dataset):
     """ Base class for all datasets """
-    def __init__(self) -> None:
-        """ 
-        Initialize the base dataset 
+    def __init__(self, cfg) -> None:
         """
+        Initialize the base dataset
+        """
+        self.cfg = cfg
         self.data = []
     def __len__(self) -> int:
         """
