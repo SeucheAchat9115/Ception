@@ -37,10 +37,11 @@ def create_dummy_classification_dataset(data_dir: str, exist_ok: bool) -> None:
 
     for image_idx in range(100):
         color_id = np.random.randint(0, 5)
+        filename = os.path.join(data_dir, f"{image_idx:010d}.png")
         image = Image.new("RGB", (500, 500), colour_rgb_mapping[class_mapping[color_id]])
-        image.save(os.path.join(data_dir, f"{image_idx:010d}.png"))
+        image.save(filename)
 
-        labels[f"{image_idx:010d}.png"] = {"class_id": color_id, "class_name": class_mapping[color_id]}
+        labels[filename] = {"class_id": color_id, "class_name": class_mapping[color_id]}
 
     with open(os.path.join(data_dir, "labels.json"), "w") as f:
         json.dump(labels, f)

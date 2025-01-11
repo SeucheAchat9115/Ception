@@ -7,11 +7,12 @@ model:
   num_classes: 10
   pretrained: True
 data:
-  dataset_type: classification
-  train_dataset: dummy_classifcation
-  train_batch_size: 2
-  val_dataset: dummy_classification
-  val_batch_size: 2
+  train:
+    data_type: classification_image_folder
+    data_location: dataset/ception_dummy_classification_dataset
+    annotation_type: dummy_classification_json
+    annotation_location: dataset/ception_dummy_classification_dataset/labels.json
+    batch_size: 2
 training:
   epochs: 10
   lr: 0.001

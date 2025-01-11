@@ -1,29 +1,28 @@
 from torch.utils.data import DataLoader
 
-from ception.config.base import DataConfig
+from ception.config.data import SplitConfig
 from ception.data.dataset.base import BaseDataset
-from ception.data.dataset.classification import ClassificationDataset
+from ception.data.dataset.classification import ImageClassificationDataset
 
 
-def get_dataset(cfg: DataConfig, split: str) -> BaseDataset:
+def get_dataset(cfg: SplitConfig) -> BaseDataset:
     """
     Get the dataset class based on the name
 
     Args:
-        cfg (Dict[str, Any]): Configuration dictionary
-        split (str): Split of the dataset
+        cfg (SplitConfig): Configuration dictionary
 
     Returns:
         BaseDataset: Dataset class
     """
 
-    if cfg.dataset_type == "classification":
-        return ClassificationDataset(cfg)
+    if cfg.data_type in ["classification_image_folder"]:
+        return ImageClassificationDataset(cfg)
     else:
-        raise NotImplementedError(f"Dataset type {cfg.dataset_type} not implemented yet")
+        raise NotImplementedError(f"Dataset type {cfg.data_type} not implemented yet")
 
 
-def get_dataloader(cfg: DataConfig, dataset: BaseDataset) -> DataLoader:
+def get_dataloader(cfg: SplitConfig, dataset: BaseDataset) -> DataLoader:
     """
     Get the dataloader class based on the name
 
@@ -34,4 +33,4 @@ def get_dataloader(cfg: DataConfig, dataset: BaseDataset) -> DataLoader:
     Returns:
         DataLoader: Dataloader class
     """
-    return DataLoader(dataset, batch_size=cfg.train_batch_size, shuffle=True, num_workers=0)
+    return DataLoader(dataset, batch_size=cfg.batch_size, shuffle=True, num_workers=0)

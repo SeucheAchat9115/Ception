@@ -38,3 +38,6 @@ select = [
     "PL", # Pylint
     "UP" # pyupgrade
 ]
+ignore = [
+    "PLR0913", # too-many-arguments
+]

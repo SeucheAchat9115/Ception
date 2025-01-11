@@ -1,5 +1,3 @@
-"""Main Function of the framework"""
-
 import argparse
 
 from ception.config.interface import load_config
@@ -20,11 +18,18 @@ def main(args: argparse.Namespace) -> None:
     setup_experiment(cfg)
 
     create_dummy_classification_dataset(data_dir="dataset/ception_dummy_classification_dataset", exist_ok=True)
-    dataset = get_dataset(cfg.data, "train")
-    dataloader = get_dataloader(cfg.data, dataset)
 
-    for sample in dataloader:
-        print(sample)
+    print(f"CEPTION: Found {len(cfg.data)} splits in the configuration file")
+
+    for split in cfg.data:
+        print(f"CEPTION: Iterating over split {split}")
+        dataset = get_dataset(split)
+        dataloader = get_dataloader(split, dataset)
+
+        for batch_idx, (image, annotation) in enumerate(dataloader):
+            print(f"CEPTION: Iterating {batch_idx + 1}/{len(dataloader)}")
+            print(f"CEPTION: Image shape: {image.shape}")
+            print(f"CEPTION: Annotation: {annotation}")
 
 
 def parse_args() -> argparse.Namespace:
@@ -39,7 +44,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--config",
         type=str,
-        default="configs/config.yaml",
+        default="configs/dummy_classification.yaml",
         help="Config to overwrite default hyperparameters",
     )
     return parser.parse_args()

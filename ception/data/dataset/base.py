@@ -22,7 +22,7 @@ class BaseDataset(Dataset):
         """
         return len(self.data)
 
-    def __getitem__(self, index: int) -> dict[str, Any]:
+    def __getitem__(self, index: int) -> tuple:
         """
         Returns the sample at the given index
 
@@ -30,6 +30,7 @@ class BaseDataset(Dataset):
             index (int): Index of the sample to be returned
 
         Returns:
-            Dict[str, Any]: A dictionary containing the sample data
+            tuple: A dictionary containing the sample data
         """
-        return self.data[index]
+        data, annotation = self.data[index]
+        return data, annotation
