@@ -32,5 +32,4 @@ class BaseDataset(Dataset):
         Returns:
             tuple: A dictionary containing the sample data
         """
-        data, annotation = self.data[index]
-        return data, annotation
+        raise NotImplementedError

@@ -21,4 +21,4 @@ class BaseAnnotationLoader:
         Returns:
             list: List of annotations
         """
-        return []
+        raise NotImplementedError

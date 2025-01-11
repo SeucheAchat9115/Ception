@@ -1,12 +1,12 @@
 from glob import glob
 
-from ception.data.image.base import BaseImageLoader
+from ception.data.image.base import BaseImageFileLoader
 
 
-class ImageLoaderFromFolder(BaseImageLoader):
+class ImageFileLoaderFromFolder(BaseImageFileLoader):
     def load_images(self, path: str) -> list:
         """
-        Load images from the folder
+        Load image files from a folder
 
         Args:
             path (str): Path to the folder containing images
@@ -15,9 +15,9 @@ class ImageLoaderFromFolder(BaseImageLoader):
             list: List of image paths
         """
 
-        png_images = glob(path + "/*.png")
-        jpg_images = glob(path + "/*.jpg")
-        jpeg_images = glob(path + "/*.jpeg")
-        images = png_images + jpg_images + jpeg_images
+        png_image_filenames = glob(path + "/*.png")
+        jpg_image_filenames = glob(path + "/*.jpg")
+        jpeg_image_filenames = glob(path + "/*.jpeg")
+        image_filenames = png_image_filenames + jpg_image_filenames + jpeg_image_filenames
 
-        return images
+        return image_filenames
