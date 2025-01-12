@@ -19,7 +19,8 @@
             "console": "integratedTerminal",
             "args": [
                 "--config",
-                "configs/classification/dummy_iterate.yaml"
+                //"configs/classification/dummy_iterate.yaml",
+                "configs/detection2d/dummy_iterate.yaml",
             ]
         }
     ]

@@ -1,12 +1,12 @@
 experiment:
-  name: iterate_dummy_classification
+  name: iterate_dummy_detection2d
   save_dir: output/
 data:
   train:
-    data_type: classification_image_folder
-    data_location: dataset/ception_dummy_classification_dataset
-    annotation_type: dummy_classification_json
-    annotation_location: dataset/ception_dummy_classification_dataset/labels.json
+    data_type: image_folder
+    data_location: dataset/ception_dummy_detection2d_dataset
+    annotation_type: detection2d_coco_json
+    annotation_location: dataset/ception_dummy_detection2d_dataset/annotations.json
     batch_size: 2
     transforms:
       Resize:

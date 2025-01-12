@@ -3,9 +3,9 @@ import json
 from ception.data.annotation.base import BaseAnnotationLoader
 
 
-class DummyClassificationAnnotationLoader(BaseAnnotationLoader):
+class ClassificationJsonAnnotationLoader(BaseAnnotationLoader):
     """
-    Annotation loader for dummy classification dataset type
+    Annotation loader for classification dataset type
     """
 
     def load_annotations(self, path: str | None) -> list:
@@ -13,7 +13,7 @@ class DummyClassificationAnnotationLoader(BaseAnnotationLoader):
         Load annotations from a given path
 
         Args:
-            path (str): Path to the annotation json file in dummy classification format
+            path (str): Path to the annotation json file
 
         Returns:
             list: List of annotations

@@ -7,12 +7,12 @@ from ception.data.image.interface import get_image_filename_loader
 from ception.data.transforms.interface import get_transforms
 
 
-class ImageClassificationDataset(BaseDataset):
-    """Dataset class for image classification tasks"""
+class ImageAnnotationDataset(BaseDataset):
+    """Dataset class for image and annotation tasks"""
 
     def __init__(self, cfg: SplitConfig) -> None:
         """
-        Initialize the classification dataset
+        Initialize the dataset
 
         Args:
             cfg (SplitConfig): Configuration for the dataset
@@ -23,15 +23,15 @@ class ImageClassificationDataset(BaseDataset):
 
         self.transforms = get_transforms(cfg)
 
-        print(f"CEPTION: Loading annotations from {self.cfg.annotation_location} for split {self.cfg.name}")
-        annotation_loader = get_annotation_loader(self.cfg)
-        self.annotations = annotation_loader.load_annotations(self.cfg.annotation_location)
-        print(f"CEPTION: Found {len(self.annotations)} annotations for split {self.cfg.name}")
-
         print(f"CEPTION: Loading images from {self.cfg.data_location} for split {self.cfg.name}")
         image_info_loader = get_image_filename_loader(self.cfg)
         image_files = image_info_loader.load_images(self.cfg.data_location)
         print(f"CEPTION: Found {len(image_files)} images for split {self.cfg.name}")
+
+        print(f"CEPTION: Loading annotations from {self.cfg.annotation_location} for split {self.cfg.name}")
+        annotation_loader = get_annotation_loader(self.cfg)
+        self.annotations = annotation_loader.load_annotations(self.cfg.annotation_location)
+        print(f"CEPTION: Found {len(self.annotations)} annotations for split {self.cfg.name}")
 
         assert len(self.annotations) == len(image_files), "Number of annotations and images do not match"
 

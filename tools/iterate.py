@@ -2,7 +2,7 @@ import argparse
 
 from ception.config.interface import load_config
 from ception.data.dataset.interface import get_dataloader, get_dataset
-from ception.data.generation.dummy_classification import create_dummy_classification_dataset
+from ception.data.generation.dummy_detection2d import create_dummy_detection2d_dataset
 from ception.utils.argparse import parse_args
 from ception.utils.experiment import setup_experiment
 
@@ -18,7 +18,8 @@ def main(args: argparse.Namespace) -> None:
     cfg = load_config(args.config)
     setup_experiment(cfg)
 
-    create_dummy_classification_dataset(data_dir="dataset/ception_dummy_classification_dataset", exist_ok=True)
+    # create_dummy_classification_dataset(data_dir="dataset/ception_dummy_classification_dataset", exist_ok=True)
+    create_dummy_detection2d_dataset(data_dir="dataset/ception_dummy_detection2d_dataset", exist_ok=True)
 
     print(f"CEPTION: Found {len(cfg.data)} splits in the configuration file")
 

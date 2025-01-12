@@ -3,7 +3,7 @@ experiment:
   save_dir: output/
 data:
   train:
-    data_type: classification_image_folder
+    data_type: image_folder
     data_location: dataset/ception_dummy_classification_dataset
     annotation_type: dummy_classification_json
     annotation_location: dataset/ception_dummy_classification_dataset/labels.json
