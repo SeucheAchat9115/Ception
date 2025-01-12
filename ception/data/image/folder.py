@@ -4,7 +4,7 @@ from ception.data.image.base import BaseImageFileLoader
 
 
 class ImageFileLoaderFromFolder(BaseImageFileLoader):
-    def load_images(self, path: str) -> list:
+    def load_images(self, path: str | None) -> list:
         """
         Load image files from a folder
 
@@ -14,6 +14,8 @@ class ImageFileLoaderFromFolder(BaseImageFileLoader):
         Returns:
             list: List of image paths
         """
+        if path is None:
+            return []
 
         png_image_filenames = glob(path + "/*.png")
         jpg_image_filenames = glob(path + "/*.jpg")

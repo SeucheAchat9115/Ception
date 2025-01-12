@@ -8,7 +8,7 @@ class DummyClassificationAnnotationLoader(BaseAnnotationLoader):
     Annotation loader for dummy classification dataset type
     """
 
-    def load_annotations(self, path: str) -> list:
+    def load_annotations(self, path: str | None) -> list:
         """
         Load annotations from a given path
 
@@ -18,6 +18,9 @@ class DummyClassificationAnnotationLoader(BaseAnnotationLoader):
         Returns:
             list: List of annotations
         """
+        if path is None:
+            return []
+
         with open(path) as f:
             annotations = json.load(f)
 

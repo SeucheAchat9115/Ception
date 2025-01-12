@@ -8,7 +8,7 @@ from ception.config.experiment import ExperimentConfig
 from ception.config.model import ModelConfig
 from ception.config.training import TrainingConfig
 from ception.config.utils import UtilsConfig
-from ception.io.reading.yaml import read_yaml_file
+from ception.data.io.reading.yaml import read_yaml_file
 
 
 class Config(BaseConfig):

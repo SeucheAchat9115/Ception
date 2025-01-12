@@ -11,7 +11,7 @@ class BaseAnnotationLoader:
         """
         self.cfg = cfg
 
-    def load_annotations(self, path: str) -> list:
+    def load_annotations(self, path: str | None) -> list:
         """
         Load annotations from a given path
 

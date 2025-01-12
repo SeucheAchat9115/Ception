@@ -1,26 +1,27 @@
 from PIL import Image
-from torchvision import transforms as T
 
+from ception.config.data import SplitConfig
 from ception.data.annotation.interface import get_annotation_loader
 from ception.data.dataset.base import BaseDataset
-from ception.data.image.interface import get_image_loader
+from ception.data.image.interface import get_image_filename_loader
+from ception.data.transforms.interface import get_transforms
 
 
 class ImageClassificationDataset(BaseDataset):
     """Dataset class for image classification tasks"""
 
-    def __init__(self, cfg) -> None:
+    def __init__(self, cfg: SplitConfig) -> None:
         """
         Initialize the classification dataset
+
+        Args:
+            cfg (SplitConfig): Configuration for the dataset
         """
         super().__init__(cfg)
 
         self.cfg = cfg
 
-        if getattr(self.cfg, "transform", None):
-            self.transform = self.cfg.transform
-        else:
-            self.transform = T.Compose([T.ToTensor()])
+        self.transforms = get_transforms(cfg)
 
         print(f"CEPTION: Loading annotations from {self.cfg.annotation_location} for split {self.cfg.name}")
         annotation_loader = get_annotation_loader(self.cfg)
@@ -28,7 +29,7 @@ class ImageClassificationDataset(BaseDataset):
         print(f"CEPTION: Found {len(self.annotations)} annotations for split {self.cfg.name}")
 
         print(f"CEPTION: Loading images from {self.cfg.data_location} for split {self.cfg.name}")
-        image_info_loader = get_image_loader(self.cfg)
+        image_info_loader = get_image_filename_loader(self.cfg)
         image_files = image_info_loader.load_images(self.cfg.data_location)
         print(f"CEPTION: Found {len(image_files)} images for split {self.cfg.name}")
 
@@ -52,7 +53,7 @@ class ImageClassificationDataset(BaseDataset):
         image_filename = annotation["filename"]
         image = Image.open(image_filename).convert("RGB")
 
-        if self.transform is not None:
-            image = self.transform(image)
+        if self.transforms is not None:
+            image = self.transforms(image)
 
         return image, annotation

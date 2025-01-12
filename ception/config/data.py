@@ -10,6 +10,7 @@ class SplitConfig(BaseConfig):
     annotation_type: str | None
     annotation_location: str | None
     batch_size: int | None
+    transforms: dict | None
 
     def __init__(
         self,
@@ -19,6 +20,7 @@ class SplitConfig(BaseConfig):
         annotation_type=None,
         annotation_location=None,
         batch_size=2,
+        transforms=None,
     ) -> None:
         """
         Initialize the configuration for the split settings
@@ -30,6 +32,7 @@ class SplitConfig(BaseConfig):
             annotation_type (str): Type of the annotation
             annotation_location (str): Location of the annotation
             batch_size (int): Batch size for the data
+            transforms (dict): Transformation settings for the data
         """
         super().__init__(
             name=name,
@@ -38,6 +41,7 @@ class SplitConfig(BaseConfig):
             annotation_type=annotation_type,
             annotation_location=annotation_location,
             batch_size=batch_size,
+            transforms=transforms,
         )
 
 

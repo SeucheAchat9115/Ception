@@ -2,11 +2,13 @@ from typing import Any
 
 from torch.utils.data import Dataset
 
+from ception.config.data import SplitConfig
+
 
 class BaseDataset(Dataset):
     """Base class for all datasets"""
 
-    def __init__(self, cfg) -> None:
+    def __init__(self, cfg: SplitConfig) -> None:
         """
         Initialize the base dataset
         """
@@ -22,7 +24,7 @@ class BaseDataset(Dataset):
         """
         return len(self.data)
 
-    def __getitem__(self, index: int) -> tuple:
+    def __getitem__(self, index: int) -> tuple[Any, dict[str, Any]]:
         """
         Returns the sample at the given index
 
@@ -30,6 +32,6 @@ class BaseDataset(Dataset):
             index (int): Index of the sample to be returned
 
         Returns:
-            tuple: A dictionary containing the sample data
+            tuple: A tuple of data tensor and annotation dict
         """
         raise NotImplementedError

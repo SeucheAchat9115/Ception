@@ -22,17 +22,24 @@ repos:
       args: [--fix]
     # Run the formatter.
     - id: ruff-format
-# - repo: https://github.com/pre-commit/mirrors-mypy
-#   rev: v1.14.0
-#   hooks:
-#     - id: mypy
-#       args: [--explicit-package-bases]
-#       additional_dependencies: [types-PyYAML]
-- repo: local
+- repo: https://github.com/pre-commit/mirrors-mypy
+  rev: v1.14.0
   hooks:
     - id: mypy
-      name: mypy
-      entry: mypy
-      language: system
-      types: [python]
-      args: [--explicit-package-bases, --ignore-missing-imports, --show-error-codes, --pretty]
+      args: [--explicit-package-bases]
+      additional_dependencies: [types-PyYAML]
+# - repo: local
+#   hooks:
+#     - id: mypy
+#       name: mypy
+#       entry: mypy
+#       language: system
+#       types: [python]
+#       pass_filenames: false
+#       args: [
+#         --explicit-package-bases, # required for mypy to understand package names without __init__.py
+#         --ignore-missing-imports,
+#         --show-error-codes,
+#         --pretty,
+#         --install-types,
+#       ]

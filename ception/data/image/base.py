@@ -11,7 +11,7 @@ class BaseImageFileLoader:
         """
         self.cfg = cfg
 
-    def load_images(self, path: str) -> list:
+    def load_images(self, path: str | None) -> list:
         """
         Load images from the folder
 
