@@ -44,12 +44,12 @@ class Config(BaseConfig):
         else:
             # Overwrite default values with values from config file
             super().__init__(
-                data=DataConfig(**config_data["data"]),
-                model=ModelConfig(**config_data["model"]),
-                experiment=ExperimentConfig(**config_data["experiment"]),
-                training=TrainingConfig(**config_data["training"]),
-                evaluation=EvaluationConfig(**config_data["evaluation"]),
-                utils=UtilsConfig(**config_data["utils"]),
+                data=DataConfig(**config_data.get("data", {})),
+                model=ModelConfig(**config_data.get("model", {})),
+                experiment=ExperimentConfig(**config_data.get("experiment", {})),
+                training=TrainingConfig(**config_data.get("training", {})),
+                evaluation=EvaluationConfig(**config_data.get("evaluation", {})),
+                utils=UtilsConfig(**config_data.get("utils", {})),
             )
 
     @classmethod

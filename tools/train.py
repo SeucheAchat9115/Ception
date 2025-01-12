@@ -4,6 +4,7 @@ import argparse
 
 from ception.config.interface import load_config
 from ception.data.generation.dummy_classification import create_dummy_classification_dataset
+from ception.utils.argparse import parse_args
 
 
 def main(args: argparse.Namespace) -> None:
@@ -27,24 +28,6 @@ def main(args: argparse.Namespace) -> None:
     # 5. Perform training
 
     # 6. Finalize the training process
-
-
-def parse_args() -> argparse.Namespace:
-    """
-    Parse command line arguments
-
-    Returns:
-        argparse.Namespace: Arguments passed on the cli interface
-    """
-
-    parser = argparse.ArgumentParser(description="Ception is a deep learning framework")
-    parser.add_argument(
-        "--config",
-        type=str,
-        default="configs/config.yaml",
-        help="Config to overwrite default hyperparameters",
-    )
-    return parser.parse_args()
 
 
 if __name__ == "__main__":
