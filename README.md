@@ -28,8 +28,8 @@ cd ception
 
 2. Install dependencies using Poetry:
 ```bash
-python -m venv "./venv"
-source venv/bin/activate
+python -m venv "./cp-venv"
+source cp-venv/bin/activate
 poetry install
 ```
 
