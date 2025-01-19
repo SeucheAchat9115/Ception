@@ -1,7 +1,9 @@
-from ception.config.base import BaseConfig
+from dataclasses import dataclass
+from typing import Any
 
 
-class SplitConfig(BaseConfig):
+@dataclass
+class SplitConfig:
     """Configuration class for the split settings"""
 
     name: str | None
@@ -12,60 +14,44 @@ class SplitConfig(BaseConfig):
     batch_size: int | None
     transforms: dict | None
 
-    def __init__(
-        self,
-        name=None,
-        data_type=None,
-        data_location=None,
-        annotation_type=None,
-        annotation_location=None,
-        batch_size=2,
-        transforms=None,
-    ) -> None:
+    @classmethod
+    def from_dict(cls, data: dict[str, Any], name: str) -> "SplitConfig":
         """
-        Initialize the configuration for the split settings
+        Create a SplitConfig object from a dictionary
 
         Args:
-            name (str): Name of the split
-            data_type (str): Type of the data
-            data_location (str): Location of the data
-            annotation_type (str): Type of the annotation
-            annotation_location (str): Location of the annotation
-            batch_size (int): Batch size for the data
-            transforms (dict): Transformation settings for the data
+            data (dict): Dictionary containing the configuration settings
+            name (str): Name of the split (train, val, or test)
+
+        Returns:
+            SplitConfig: Configuration settings for the split
         """
-        super().__init__(
-            name=name,
-            data_type=data_type,
-            data_location=data_location,
-            annotation_type=annotation_type,
-            annotation_location=annotation_location,
-            batch_size=batch_size,
-            transforms=transforms,
-        )
+        data = data.get(name, {})
+        data["name"] = name
+        return cls(**data)
 
 
-class DataConfig(BaseConfig):
+@dataclass
+class DataConfig:
     """Configuration class for the data split settings"""
 
-    train: SplitConfig | None
-    val: SplitConfig | None
-    test: SplitConfig | None
+    train: SplitConfig | None = None
+    val: SplitConfig | None = None
+    test: SplitConfig | None = None
 
-    def __init__(self, train=None, val=None, test=None) -> None:
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "DataConfig":
         """
-        Initialize the configuration for the data split settings
+        Create a DataConfig object from a dictionary
 
         Args:
-            train (SplitConfig): Configuration for the training split
-            val (SplitConfig): Configuration for the validation split
-            test (SplitConfig): Configuration for the testing split
+            data (dict): Dictionary containing the configuration settings
+
+        Returns:
+            DataConfig: Configuration settings for the data split
         """
-        super().__init__(
-            train=SplitConfig(name="train", **train) if train is not None else None,
-            val=SplitConfig(name="val", **val) if val is not None else None,
-            test=SplitConfig(name="test", **test) if test is not None else None,
-        )
+        splits = {key: SplitConfig.from_dict(data, key) for key in ["train", "val", "test"] if key in data}
+        return cls(**splits)
 
     def __len__(self) -> int:
         """

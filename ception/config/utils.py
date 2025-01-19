@@ -1,22 +1,26 @@
-from ception.config.base import BaseConfig
+from dataclasses import dataclass
+from typing import Any
 
 
-class UtilsConfig(BaseConfig):
+@dataclass
+class UtilsConfig:
     """Configuration class for the utility settings"""
 
     seed: int | None
     device: str | None
 
-    def __init__(
-        self,
-        seed=42,
-        device="cuda",
-    ) -> None:
+    @classmethod
+    def from_dict(cls, config_data: dict[str, Any]) -> "UtilsConfig":
         """
-        Initialize the configuration for the utility settings
+        Load configuration from a dictionary
 
         Args:
-            seed (int): Seed for reproducibility
-            device (str): Device to run the code
+            config_data (dict): Dictionary containing the configuration
+
+        Returns:
+            UtilsConfig: Configuration object
         """
-        super().__init__(seed=seed, device=device)
+        return cls(
+            seed=config_data.get("seed"),
+            device=config_data.get("device"),
+        )

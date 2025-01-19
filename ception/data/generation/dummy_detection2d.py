@@ -1,5 +1,6 @@
-import os
 import json
+import os
+from typing import Any
 
 import numpy as np
 from PIL import Image
@@ -13,6 +14,7 @@ colour_rgb_mapping = {
     "yellow": (255, 255, 0),
     "magenta": (255, 0, 255),
 }
+
 
 def create_dummy_detection2d_dataset(data_dir: str, exist_ok: bool) -> None:
     """
@@ -32,7 +34,7 @@ def create_dummy_detection2d_dataset(data_dir: str, exist_ok: bool) -> None:
 
     os.makedirs(data_dir, exist_ok=True)
 
-    annotations = {"images": [], "annotations": [], "categories": []}
+    annotations: dict[str, Any] = {"images": [], "annotations": [], "categories": []}
     annotations["categories"] = [
         {"id": 0, "name": "red"},
         {"id": 1, "name": "blue"},
@@ -45,14 +47,7 @@ def create_dummy_detection2d_dataset(data_dir: str, exist_ok: bool) -> None:
         filename = os.path.join(data_dir, f"{image_idx:010d}.png")
         image = Image.new("RGB", (500, 500), (255, 255, 255))
 
-        annotations["images"].append(
-            {
-                "id": image_idx, 
-                "file_name": filename, 
-                "height": 500, 
-                "width": 500
-            }
-        )
+        annotations["images"].append({"id": image_idx, "file_name": filename, "height": 500, "width": 500})
 
         number_of_objects = np.random.randint(1, 10)
 
@@ -74,10 +69,10 @@ def create_dummy_detection2d_dataset(data_dir: str, exist_ok: bool) -> None:
                     "category_id": color_id,
                     "id": len(annotations["annotations"]) + 1,
                     "iscrowd": 0,
-                    "area": w * h
+                    "area": w * h,
                 }
             )
-        
+
         image.save(filename)
 
     with open(os.path.join(data_dir, "annotations.json"), "w") as f:

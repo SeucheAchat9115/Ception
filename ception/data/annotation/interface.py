@@ -7,7 +7,7 @@ from ception.data.annotation.detection2d.coco import Detection2dCocoAnnotationLo
 def get_annotation_loader(cfg: SplitConfig) -> BaseAnnotationLoader:
     if cfg.annotation_type in ["classification_json"]:
         return ClassificationJsonAnnotationLoader(cfg)
-    elif cfg.annotation_type in ["detection2d_coco"]:
+    elif cfg.annotation_type in ["detection2d_coco_json"]:
         return Detection2dCocoAnnotationLoader(cfg)
     else:
         raise NotImplementedError(f"Annotation type {cfg.annotation_type} not implemented yet")

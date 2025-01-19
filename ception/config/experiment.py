@@ -1,22 +1,23 @@
-from ception.config.base import BaseConfig
+from dataclasses import dataclass
+from typing import Any
 
 
-class ExperimentConfig(BaseConfig):
+@dataclass
+class ExperimentConfig:
     """Configuration class for the experiment settings"""
 
     name: str | None
     save_dir: str | None
 
-    def __init__(
-        self,
-        name=None,
-        save_dir="./output/",
-    ) -> None:
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "ExperimentConfig":
         """
-        Initialize the configuration for the experiment settings
+        Create an ExperimentConfig object from a dictionary
 
         Args:
-            name (str): Name of the experiment
-            save_dir (str): Directory to save the experiment results
+            data (dict): Dictionary containing the configuration settings
+
+        Returns:
+            ExperimentConfig: Configuration settings for the experiment
         """
-        super().__init__(name=name, save_dir=save_dir)
+        return cls(**data)

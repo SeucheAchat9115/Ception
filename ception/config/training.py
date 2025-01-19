@@ -1,7 +1,9 @@
-from ception.config.base import BaseConfig
+from dataclasses import dataclass
+from typing import Any
 
 
-class TrainingConfig(BaseConfig):
+@dataclass
+class TrainingConfig:
     """Configuration class for the training settings"""
 
     epochs: int | None
@@ -9,20 +11,20 @@ class TrainingConfig(BaseConfig):
     lr: float | None
     lr_scheduler: str | None
 
-    def __init__(
-        self,
-        epochs=10,
-        optimizer="adam",
-        lr=0.001,
-        lr_scheduler="step",
-    ) -> None:
+    @classmethod
+    def from_dict(cls, config_data: dict[str, Any]) -> "TrainingConfig":
         """
-        Initialize the configuration for the training settings
+        Load configuration from a dictionary
 
         Args:
-            epochs (int): Number of epochs to train the model
-            optimizer (str): Name of the optimizer
-            lr (float): Learning rate for the optimizer
-            lr_scheduler (str): Name of the learning rate scheduler
+            config_data (dict): Dictionary containing the configuration
+
+        Returns:
+            TrainingConfig: Configuration object
         """
-        super().__init__(epochs=epochs, optimizer=optimizer, lr=lr, lr_scheduler=lr_scheduler)
+        return cls(
+            epochs=config_data.get("epochs"),
+            optimizer=config_data.get("optimizer"),
+            lr=config_data.get("lr"),
+            lr_scheduler=config_data.get("lr_scheduler"),
+        )

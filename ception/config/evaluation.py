@@ -1,19 +1,22 @@
-from ception.config.base import BaseConfig
+from dataclasses import dataclass
+from typing import Any
 
 
-class EvaluationConfig(BaseConfig):
+@dataclass
+class EvaluationConfig:
     """Configuration class for the evaluation settings"""
 
-    metric_name: str | None
+    metric_name: str | None = None
 
-    def __init__(
-        self,
-        metric_name=None,
-    ) -> None:
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> "EvaluationConfig":
         """
-        Initialize the configuration for the evaluation settings
+        Create an EvaluationConfig object from a dictionary
 
         Args:
-            metric_name (str): Name of the evaluation metric
+            data (dict): Dictionary containing the configuration settings
+
+        Returns:
+            EvaluationConfig: Configuration settings for the evaluation
         """
-        super().__init__(metric_name=metric_name)
+        return cls(**data)

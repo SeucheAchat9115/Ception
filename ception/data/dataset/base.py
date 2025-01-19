@@ -13,7 +13,7 @@ class BaseDataset(Dataset):
         Initialize the base dataset
         """
         self.cfg = cfg
-        self.data: list[dict[str, Any]] = []
+        self.annotations: list[Any] = []
 
     def __len__(self) -> int:
         """
@@ -22,7 +22,7 @@ class BaseDataset(Dataset):
         Returns:
             int: Length of the dataset in terms of number of samples
         """
-        return len(self.data)
+        return len(self.annotations)
 
     def __getitem__(self, index: int) -> tuple[Any, dict[str, Any]]:
         """
